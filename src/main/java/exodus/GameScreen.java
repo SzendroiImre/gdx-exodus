@@ -565,8 +565,8 @@ public class GameScreen extends BaseScreen {
             if (!preMove(v, Direction.NORTH)) {
                 return false;
             }
-            if (newMapPixelCoords.y + tilePixelHeight >= context.getCurrentMap().getHeight() * tilePixelHeight) {
-                newMapPixelCoords.y = 0;
+            if (newMapPixelCoords.y + tilePixelHeight > context.getCurrentMap().getHeight() * tilePixelHeight) {
+                newMapPixelCoords.y = tilePixelHeight;
                 postMove(Direction.NORTH, (int) v.x, context.getCurrentMap().getHeight() - 1);
             } else {
                 newMapPixelCoords.y = newMapPixelCoords.y + tilePixelHeight;
@@ -582,8 +582,8 @@ public class GameScreen extends BaseScreen {
             if (!preMove(v, Direction.EAST)) {
                 return false;
             }
-            if (newMapPixelCoords.x + tilePixelWidth >= context.getCurrentMap().getWidth() * tilePixelWidth) {
-                newMapPixelCoords.x = 0;
+            if (newMapPixelCoords.x + tilePixelWidth > context.getCurrentMap().getWidth() * tilePixelWidth) {
+                newMapPixelCoords.x = tilePixelWidth;
                 postMove(Direction.EAST, 0, (int) v.y);
             } else {
                 newMapPixelCoords.x = newMapPixelCoords.x + tilePixelWidth;
@@ -599,8 +599,8 @@ public class GameScreen extends BaseScreen {
             if (!preMove(v, Direction.WEST)) {
                 return false;
             }
-            if (newMapPixelCoords.x - tilePixelWidth < 0) {
-                newMapPixelCoords.x = (context.getCurrentMap().getWidth() - 1) * tilePixelWidth;
+            if (newMapPixelCoords.x - tilePixelWidth <= 0) {
+                newMapPixelCoords.x = context.getCurrentMap().getWidth() * tilePixelWidth;
                 postMove(Direction.WEST, context.getCurrentMap().getWidth() - 1, (int) v.y);
             } else {
                 newMapPixelCoords.x = newMapPixelCoords.x - tilePixelWidth;
@@ -616,8 +616,8 @@ public class GameScreen extends BaseScreen {
             if (!preMove(v, Direction.SOUTH)) {
                 return false;
             }
-            if (newMapPixelCoords.y - tilePixelHeight < 0) {
-                newMapPixelCoords.y = (context.getCurrentMap().getHeight() - 1) * tilePixelHeight;
+            if (newMapPixelCoords.y - tilePixelHeight <= 0) {
+                newMapPixelCoords.y = context.getCurrentMap().getHeight() * tilePixelHeight;
                 postMove(Direction.SOUTH, (int) v.x, 0);
             } else {
                 newMapPixelCoords.y = newMapPixelCoords.y - tilePixelHeight;
